@@ -1,0 +1,160 @@
+.slider{
+    width: 96.5%;
+    overflow: hidden;
+}
+
+.slide{
+    transition: opacity 0.5s ease-in-out;
+}
+
+.image{
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 1410px;
+    height: 600px;
+    border-radius: 10px;
+}
+
+.left-arrow, .right-arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+.left-arrow{
+    left: 10px;
+}
+
+.right-arrow{
+    right: 10px;
+}
+
+.product-slider{
+    width: 95.5%;
+    overflow: hidden;
+}
+
+.product-slider-container{
+    display: flex;
+    margin-left: 50px;
+    transition: tranform 0.5s ease-in-out;
+}
+
+.product-slide{
+    flex: 0 0 16.766%;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    height: 380px;
+    color: white;
+    background-color: rgb(95, 85, 85);
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px 2px rgb(68, 68, 68);
+}
+
+.product-slide:hover{
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.product-image{
+    width: 200px;
+    height: 200px;
+}
+
+.left-arrow1, .right-arrow1{
+    position: absolute;
+    top: 117%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+}
+
+.left-arrow1{
+    left: 10px;
+}
+
+.right-arrow1{
+    right: 10px;
+}
+
+.AddtoCart{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    height: 35px;
+    width: 180px;
+    font-size: 85%;
+    border: 3px solid #04fb6b;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    animation: animateBg 5s linear infinite;
+}
+
+.counter-change{
+    border: 3px solid #04fb6b;
+    transition: 0.25s;
+    cursor: pointer;
+    animation: animateBg 5s linear infinite;
+    margin: 5px;
+}
+
+.AddtoCart:hover{
+    background-color: aqua;
+}
+
+@keyframes animateBg{
+    100%{
+        filter: hue-rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+  .image {
+    width: calc(100vw - 20px);
+    height: 200px;
+    margin-left: 10px;
+  }
+
+  .slider {
+    width: 100%;
+  }
+
+  .product-slider {
+    width: 100%;
+  }
+
+  .product-slider-container {
+    margin-left: 10px;
+  }
+
+  .product-slide {
+    flex: 0 0 calc(50% - 20px);
+    height: auto;
+    min-height: 280px;
+  }
+
+  .product-slider-container {
+    flex-wrap: wrap;
+    margin-left: 5px;
+  }
+
+  .product-image {
+    width: 100px;
+    height: 100px;
+  }
+}

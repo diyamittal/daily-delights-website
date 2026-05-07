@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.69e16014.css",
+    "main.js": "/static/js/main.1e5eb1fe.js",
+    "static/js/453.a6a97343.chunk.js": "/static/js/453.a6a97343.chunk.js",
+    "static/media/apple1.jpg": "/static/media/apple1.8320317c948ffcb98db1.jpg",
+    "static/media/fruits.jpg": "/static/media/fruits.71a964770333259d70bb.jpg",
+    "static/media/coffee.jpg": "/static/media/coffee.ce6e8e362091cda0ad41.jpg",
+    "static/media/grocery.jpg": "/static/media/grocery.3d6b21f1e6186ee8c44d.jpg",
+    "static/media/grapes.jpg": "/static/media/grapes.40c57b8a494289f6bbd2.jpg",
+    "static/media/veges.jpg": "/static/media/veges.45536f7515af6f82d6b6.jpg",
+    "static/media/kurkure.jpeg": "/static/media/kurkure.e39c262ff90463f77fbe.jpeg",
+    "static/media/green kurkure.jpeg": "/static/media/green kurkure.5663a69d320a3943e4dd.jpeg",
+    "static/media/vegetables.jpeg": "/static/media/vegetables.ff915956c4c19c350fff.jpeg",
+    "static/media/houshold.jpeg": "/static/media/houshold.e5ae1b5350e00baa8454.jpeg",
+    "static/media/cereals.jpeg": "/static/media/cereals.da1af534cf25d1ef498c.jpeg",
+    "static/media/tide.jpeg": "/static/media/tide.94939c51521604392610.jpeg",
+    "static/media/fruits.jpeg": "/static/media/fruits.9d7385ff5756d9d39db5.jpeg",
+    "static/media/dairy milk.jpeg": "/static/media/dairy milk.fa41b77c1eb598cd2c8c.jpeg",
+    "static/media/chocolates.jpeg": "/static/media/chocolates.18a9f7bc30b6a2357e90.jpeg",
+    "static/media/biscuits.jpeg": "/static/media/biscuits.d33e1ec69edb07e8eff6.jpeg",
+    "static/media/namkeen.jpeg": "/static/media/namkeen.523216ba7971aab0656b.jpeg",
+    "index.html": "/index.html",
+    "main.69e16014.css.map": "/static/css/main.69e16014.css.map",
+    "main.1e5eb1fe.js.map": "/static/js/main.1e5eb1fe.js.map",
+    "453.a6a97343.chunk.js.map": "/static/js/453.a6a97343.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.69e16014.css",
+    "static/js/main.1e5eb1fe.js"
+  ]
+}

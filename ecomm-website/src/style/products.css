@@ -1,0 +1,167 @@
+.searchBar{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 400px;
+    width: 800px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: rgb(95, 85, 85);
+    color: white;
+    font-size: 20px;
+}
+
+.split-container{
+    display: flex;
+}
+
+.pane1{
+    flex: 0 0 23%;
+    position: relative;
+    background-color: rgb(95, 85, 85);
+    height: 100%;
+}
+
+.pane2{
+    flex: 0 0 77%;
+    height: 100%;
+}
+
+.group-products{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.group-item{
+    align-items: center;
+    justify-content: center;
+}
+
+.group-image{
+    width: 250px;
+    height: 250px;
+    transition: all 0.5s ease;
+}
+
+.group-image:hover{
+    transform: scale(1.05);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.group-title{
+    color: white;
+    cursor: pointer;
+}
+
+.selected-category{
+    margin-left: 500px;
+    color: white;
+}
+
+.product-list-horizontal{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-box{
+    flex: 0 0 auto;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    height: 380px;
+    color: white;
+    background-color: rgb(95, 85, 85);
+    transition: all 0.5s ease;
+    box-shadow: 0 0 20px 2px rgb(68, 68, 68);
+}
+
+.product-box:hover{
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.selected-image{
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+}
+
+.heading{
+    text-align: center;
+}
+
+.counter{
+    display: flex;
+    align-items: center;
+    margin-left: 65px;
+}
+
+.counter-change{
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px;
+}
+
+.counting{
+    margin: 0;
+    font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .searchBar {
+    margin-left: 10px;
+    width: calc(100% - 20px);
+  }
+
+  .split-container {
+    flex-direction: column;
+  }
+
+  .pane1 {
+    flex: none;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pane2 {
+    flex: none;
+    width: 100%;
+  }
+
+  .group-products {
+    margin-left: 10px;
+  }
+
+  .group-image {
+    width: 130px;
+    height: 130px;
+  }
+
+  .selected-category {
+    margin-left: 10px;
+    text-align: center;
+  }
+
+  .product-box {
+    margin-left: 10px;
+    width: calc(45% - 10px);
+  }
+
+  .selected-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .counter {
+    margin-left: 20px;
+  }
+}
