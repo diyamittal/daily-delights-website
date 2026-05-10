@@ -6,13 +6,9 @@ export default function Navbar(){
     const auth = localStorage.getItem('user') || ''
     const navigate = useNavigate();
     const user = auth ? JSON.parse(auth) : null
-    const logout = async()=>{
+    const logout = ()=>{
         localStorage.clear();
         navigate('/SignUp')
-        let result = await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/products`, {
-            method: "Delete"
-        })
-        result = await result.json()
     }
     return (
         <nav>
