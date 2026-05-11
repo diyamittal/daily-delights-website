@@ -2,11 +2,13 @@ import React, {useEffect, useState} from "react"
 import '../style/cart.css'
 import {Link, useNavigate} from "react-router-dom"
 import Quantity from './Quantity'
+import Toast from './Toast'
 
 export default function Cart(){
     const [products, setProducts] = useState([])
-
     const [totalAmount, setTotalAmount] = useState(0);
+    const [loading, setLoading] = useState(true)
+    const [toast, setToast] = useState(null)
 
     useEffect(()=>{
         getProducts();
@@ -33,7 +35,9 @@ export default function Cart(){
             //    console.log("Token not found")
             //}
         }catch(error){
-            console.error('Error', error);
+            setToast({ message: 'Failed to load cart. Please refresh.', type: 'error' })
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -48,10 +52,27 @@ export default function Cart(){
         navigate('/location')
     }
 
+    const handleRemoveItem = async(index)=>{
+        const updatedProducts=[...products];
+        const productId = updatedProducts[index].id;
+        try {
+            await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/products/${productId}`, {
+                method: "DELETE",
+                headers:{ "Content-Type":"application/json" }
+            });
+        } catch (error) {
+            setToast({ message: 'Failed to remove item. Try again.', type: 'error' })
+        }
+        updatedProducts.splice(index, 1);
+        saveProducts(updatedProducts);
+        setToast({ message: 'Item removed from cart', type: 'info' })
+    }
+
     const handleAddtocart = (index)=>{
         const updatedProducts=[...products];
         updatedProducts[index].quantity++;
         saveProducts(updatedProducts);
+        setToast({ message: 'Item quantity updated', type: 'info' })
     }
     const handleRemovefromcart = async(index)=>{
         const updatedProducts=[...products];
@@ -74,7 +95,7 @@ export default function Cart(){
                 });
             }
         } catch (error) {
-            console.error("Error removing product from database:", error);
+            setToast({ message: 'Failed to remove item. Try again.', type: 'error' })
         }
     
         
@@ -87,6 +108,7 @@ export default function Cart(){
         }
     
         saveProducts(updatedProducts);
+        setToast({ message: 'Item removed from cart', type: 'info' })
     }
     
     const calculateTotalPrice = () =>{
@@ -102,7 +124,7 @@ export default function Cart(){
     return (
         <div className="cart">
             <h3 className="Cart-name">Shopping Cart</h3>
-            {products.length>0 ? products.map((item, index)=>
+            {loading ? <h3>Loading cart...</h3> : products.length>0 ? products.map((item, index)=>
                 <div key={item._id} className="cart-items">
                     <div>
                         <img src={item.image} alt={item.title} className="cart-image"></img>
@@ -112,7 +134,7 @@ export default function Cart(){
                         <div>Rs {item.price}</div>
                     </div>
                     <div>
-                        <h3 className="cross">X</h3>
+                        <h3 className="cross" onClick={()=>handleRemoveItem(index)} style={{cursor:'pointer'}}>X</h3>
                     </div>
                     <div>
                         <div className="item-quantity">
@@ -132,6 +154,7 @@ export default function Cart(){
                     <h3 className="amount">Total Amount: Rs {calculateTotalPrice()}</h3>
                 </div>
             <button className="cart-button" ><Link onClick={AddLocation} to="/location" className="location">Add Location</Link></button>
+            {toast && <Toast message={toast.message} type={toast.type} onClose={()=>setToast(null)} />}
         </div>
     )
 }

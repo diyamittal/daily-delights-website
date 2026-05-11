@@ -1,0 +1,58 @@
+.profile {
+    padding: 40px;
+    color: white;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.profile-details {
+    background: #191919;
+    padding: 24px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.profile-details h2, .profile-orders h2 {
+    margin-bottom: 16px;
+    color: #04fb6b;
+}
+
+.profile-details p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.profile-details p span {
+    color: #0399fd;
+    margin-right: 8px;
+}
+
+.order-card {
+    background: #191919;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    color: #04fb6b;
+    font-weight: bold;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #333;
+    font-size: 14px;
+}
+
+.order-total {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #0399fd;
+}

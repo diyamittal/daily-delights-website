@@ -2,6 +2,7 @@ import React,{useEffect, useState} from "react"
 import '../style/cart.css'
 import {Link, useNavigate} from "react-router-dom"
 import '../style/location.css'
+import Toast from './Toast'
 
 export default function Location(){
     const [products, setProducts] = useState([])
@@ -14,6 +15,7 @@ export default function Location(){
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('CashOnDelivery');
+    const [toast, setToast] = useState(null)
 
     useEffect(()=>{
         const existingCart = JSON.parse(localStorage.getItem("cart"))
@@ -38,8 +40,8 @@ export default function Location(){
         if (submitting) return;
 
         if (!house || !Street || !City || !State) {
-            alert("Please fill in all required fields.");
-            return;
+            setToast({ message: 'Please fill in all required fields.', type: 'error' })
+            return
         }
 
         setSubmitting(true);
@@ -50,19 +52,24 @@ export default function Location(){
         let result = await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/add-location`,{
             method: 'post',
             body: JSON.stringify({house, Street, Landmark, City, State, userId}),
-            headers:{
-                "Content-Type":"application/json"
-            }
+            headers:{ "Content-Type":"application/json" }
         });
         result = await result.json();
-        console.log(result);
 
         if (result.status === 'error') {
+            setToast({ message: 'Failed to save location. Try again.', type: 'error' })
             setFormSubmitted(false);
             setSubmitting(false);
             return;
         }
 
+        await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/add-order`, {
+            method: 'post',
+            body: JSON.stringify({ userId, items: products, totalAmount, location: {house, Street, Landmark, City, State}, paymentMethod }),
+            headers:{ "Content-Type":"application/json" }
+        });
+
+        localStorage.setItem('lastOrder', JSON.stringify({ items: products, totalAmount, paymentMethod }));
         setFormSubmitted(true);
     }
 
@@ -92,6 +99,7 @@ export default function Location(){
                 {paymentMethod === 'UPI' ? 'PAY' : 'Confirm Order'}
                 {submitting ? 'Submitting...' : ''}
             </button>
+            {toast && <Toast message={toast.message} type={toast.type} onClose={()=>setToast(null)} />}
         </div>
     )
 }
