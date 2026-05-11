@@ -5,6 +5,8 @@ require('./db/config');
 const User = require('./db/User');
 const Product = require('./db/Product')
 const Location = require('./db/Location')
+const Order = require('./db/Order')
+const bcrypt = require('bcryptjs')
 const app= express();
 const paymentController = require('./controllers/paymentController.js')
 const mongoose = require('mongoose');
@@ -38,12 +40,12 @@ app.use((req, res, next) => {
 app.use(express.json());
 
 app.post("/register", async(req, res)=>{
-
     const existingUser = await User.findOne({email: req.body.email});
     if(existingUser){
         return res.status(400).json({error: 'User already exist'});
     }
-    let user = new User(req.body);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    let user = new User({...req.body, password: hashedPassword});
     let result = await user.save();
     result = result.toObject();
     delete result.password;
@@ -52,15 +54,15 @@ app.post("/register", async(req, res)=>{
 
 app.post("/login", async (req, res)=>{
     if(req.body.password && req.body.email){
-        let user = await User.findOne(req.body).select("-password");
-        if(user){
+        let user = await User.findOne({email: req.body.email});
+        if(user && await bcrypt.compare(req.body.password, user.password)){
+            user = user.toObject();
+            delete user.password;
             res.send(user);
-        }
-        else{
+        } else {
             res.send({result: 'No User Found'})
         }
-    }
-    else{
+    } else {
         res.send({result: 'No User Found'})
     }
 })
@@ -85,6 +87,17 @@ app.post("/add-location", async (req, res)=>{
     let location = new Location(req.body);
     let result = await location.save();
     res.send(result)
+})
+
+app.post("/add-order", async (req, res)=>{
+    let order = new Order(req.body);
+    let result = await order.save();
+    res.send(result)
+})
+
+app.get("/orders/:userId", async (req, res)=>{
+    let orders = await Order.find({ "userId._id": req.params.userId }).sort({ createdAt: -1 });
+    res.send(orders)
 })
 
 app.delete("/products", async (req, res)=>{
