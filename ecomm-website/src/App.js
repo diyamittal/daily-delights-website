@@ -9,9 +9,11 @@ import SignUp from "./components/SignUp"
 import Login from "./components/Login"
 import Footer from "./components/Footer"
 import PrivateComponent from './components/PrivateComponent'
+import AdminComponent from './components/AdminComponent'
 import Cart from './components/Cart'
 import Location from './components/Location'
 import Final from './components/Final'
+import Admin from './components/Admin'
 
 
 export default function App(){
@@ -31,6 +33,9 @@ export default function App(){
         </Route>
         <Route path="/SignUp" element={<SignUp/>}></Route>
         <Route path="/Login" element={<Login/>}></Route>
+        <Route element={<AdminComponent/>}>
+          <Route path="/admin" element={<Admin/>}></Route>
+        </Route>
       </Routes>
       </BrowserRouter>
     </div>

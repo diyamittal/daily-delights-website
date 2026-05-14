@@ -56,3 +56,20 @@
     font-weight: bold;
     color: #0399fd;
 }
+
+.order-status {
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-placed   { background: #444; color: #fff; }
+.status-confirmed { background: #0399fd; color: #fff; }
+.status-delivered { background: #04fb6b; color: #000; }
+
+.empty-state {
+    text-align: center;
+    padding: 40px 0;
+    color: #888;
+}

@@ -26,6 +26,7 @@ export default function Navbar(){
                 <li className="active"><Link to="/">Home</Link></li>
                 <li><Link to="/Products">Products</Link></li>
                 <li><Link to="/profile">Profile</Link></li>
+                {user?.isAdmin && <li><Link to="/admin">Admin</Link></li>}
                 <li className="right-nav"><Link to="/Cart">Cart {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}</Link></li>
                 <li className="right-nav"><Link onClick={logout} to="/SignUp">Logout({user.name})</Link></li>
                 </ul>

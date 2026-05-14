@@ -124,7 +124,7 @@ export default function Cart(){
     return (
         <div className="cart">
             <h3 className="Cart-name">Shopping Cart</h3>
-            {loading ? <h3>Loading cart...</h3> : products.length>0 ? products.map((item, index)=>
+            {loading ? <h3 style={{color:'white'}}>Loading cart...</h3> : products.length > 0 ? products.map((item, index)=>
                 <div key={item._id} className="cart-items">
                     <div>
                         <img src={item.image} alt={item.title} className="cart-image"></img>
@@ -149,7 +149,12 @@ export default function Cart(){
                     <div>
                         <Quantity quantity={item.quantity} onAddToCart={()=>handleAddtocart(index)} onRemoveFromCart={()=>handleRemovefromcart(index)}></Quantity>
                     </div>
-                </div>): <h1>No item in cart</h1>}
+                </div>): (
+                <div style={{ textAlign:'center', color:'white', padding:'60px 0' }}>
+                    <h2>🛒 Your cart is empty</h2>
+                    <p style={{ color:'#888' }}>Add some items to get started!</p>
+                </div>
+            )}
                 <div className="total-amount">
                     <h3 className="amount">Total Amount: Rs {calculateTotalPrice()}</h3>
                 </div>

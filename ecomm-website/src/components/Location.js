@@ -63,13 +63,13 @@ export default function Location(){
             return;
         }
 
-        await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/add-order`, {
+        const orderRes = await fetch(`${process.env.REACT_APP_BACKEND_BASEURL}/add-order`, {
             method: 'post',
             body: JSON.stringify({ userId, items: products, totalAmount, location: {house, Street, Landmark, City, State}, paymentMethod }),
             headers:{ "Content-Type":"application/json" }
         });
-
-        localStorage.setItem('lastOrder', JSON.stringify({ items: products, totalAmount, paymentMethod }));
+        const savedOrder = await orderRes.json();
+        localStorage.setItem('lastOrder', JSON.stringify({ _id: savedOrder._id, items: products, totalAmount, paymentMethod }));
         setFormSubmitted(true);
     }
 

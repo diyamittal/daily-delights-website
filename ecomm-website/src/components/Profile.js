@@ -31,13 +31,21 @@ export default function Profile(){
             </div>
             <div className="profile-orders">
                 <h2>Order History</h2>
-                {loading ? <p>Loading orders...</p> : orders.length === 0 ? <p>No orders yet.</p> :
+                {loading ? (
+                    <div className="empty-state"><p>Loading orders...</p></div>
+                ) : orders.length === 0 ? (
+                    <div className="empty-state">
+                        <p>🛍️ No orders yet.</p>
+                        <p>Start shopping to see your orders here!</p>
+                    </div>
+                ) :
                     orders.map((order, i) => (
                         <div key={i} className="order-card">
                             <div className="order-header">
                                 <span>Order #{i + 1}</span>
                                 <span>{new Date(order.createdAt).toLocaleDateString()}</span>
                                 <span>{order.paymentMethod}</span>
+                                <span className={`order-status status-${order.status?.toLowerCase()}`}>{order.status || 'Placed'}</span>
                             </div>
                             {order.items.map((item, j) => (
                                 <div key={j} className="order-item">

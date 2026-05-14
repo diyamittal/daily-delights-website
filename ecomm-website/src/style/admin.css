@@ -1,0 +1,108 @@
+.admin {
+    padding: 30px;
+    color: white;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.admin-title {
+    color: #04fb6b;
+    margin-bottom: 24px;
+    font-size: 28px;
+}
+
+.admin-loading {
+    color: white;
+    text-align: center;
+    padding: 60px;
+    font-size: 18px;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 10px 24px;
+    border: 2px solid #444;
+    background: none;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.tab-btn.active, .tab-btn:hover {
+    border-color: #04fb6b;
+    color: #04fb6b;
+}
+
+.stats-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.stat-card {
+    background: #191919;
+    border-radius: 12px;
+    padding: 24px 36px;
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.stat-card h3 {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #04fb6b;
+}
+
+.admin-table-wrap {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.admin-table th {
+    background: #191919;
+    color: #04fb6b;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.admin-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #2a2a2a;
+    color: #ddd;
+}
+
+.admin-table tr:hover td {
+    background: #1e1e1e;
+}
+
+.order-status {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-placed    { background: #444; color: #fff; }
+.status-confirmed { background: #0399fd; color: #fff; }
+.status-delivered { background: #04fb6b; color: #000; }
