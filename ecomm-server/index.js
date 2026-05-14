@@ -92,12 +92,60 @@ app.post("/add-location", async (req, res)=>{
 app.post("/add-order", async (req, res)=>{
     let order = new Order(req.body);
     let result = await order.save();
+
+    setTimeout(async()=>{
+        await Order.findByIdAndUpdate(result._id, { status: 'Confirmed' });
+    }, 60000)
+
+    setTimeout(async()=>{
+        await Order.findByIdAndUpdate(result._id, { status: 'Delivered' });
+    }, 180000)
+
     res.send(result)
 })
 
 app.get("/orders/:userId", async (req, res)=>{
     let orders = await Order.find({ "userId._id": req.params.userId }).sort({ createdAt: -1 });
     res.send(orders)
+})
+
+app.get("/order/:id", async (req, res)=>{
+    try {
+        let order = await Order.findById(req.params.id);
+        res.send(order)
+    } catch(err){
+        res.status(404).send({ error: 'Order not found' })
+    }
+})
+
+app.get("/admin/stats", async (req, res)=>{
+    try {
+        const totalOrders = await Order.countDocuments()
+        const totalUsers = await User.countDocuments()
+        const orders = await Order.find()
+        const totalRevenue = orders.reduce((sum, o) => sum + (o.totalAmount || 0), 0)
+        res.send({ totalOrders, totalUsers, totalRevenue })
+    } catch(err){
+        res.status(500).send({ error: 'Failed to fetch stats' })
+    }
+})
+
+app.get("/admin/orders", async (req, res)=>{
+    try {
+        const orders = await Order.find().sort({ createdAt: -1 })
+        res.send(orders)
+    } catch(err){
+        res.status(500).send({ error: 'Failed to fetch orders' })
+    }
+})
+
+app.get("/admin/users", async (req, res)=>{
+    try {
+        const users = await User.find().select('-password')
+        res.send(users)
+    } catch(err){
+        res.status(500).send({ error: 'Failed to fetch users' })
+    }
 })
 
 app.delete("/products", async (req, res)=>{
